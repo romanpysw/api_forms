@@ -159,7 +159,7 @@ async def get_records(form_uid:int) -> dict:
 
 
 @app.get('/get_record')
-async def get_my_record(form_uid:int, name:str) -> dict:
+async def get_record(form_uid:int, name:str) -> dict:
     """Получение ответа на форму из БД по form_uid и name автора ответа"""
 
     query = f""" SELECT form_uid, author, time, fields FROM form_record    
@@ -190,7 +190,7 @@ async def get_my_record(form_uid:int, name:str) -> dict:
 
 
 @app.post('/update_record')
-async def update_my_record(form_uid:int, name:str, new_record:FormRecord) -> dict:
+async def update_record(form_uid:int, name:str, new_record:FormRecord) -> dict:
     """Обновление записи ответа по form_uid и name автора ответа"""
 
     try:
@@ -221,52 +221,3 @@ async def delete_record(form_uid:int, name:str) -> dict:
     return {'jsonrpc': '2.0', 'result': [], 'id': form_uid}
 
 
-@app.get("/test")
-async def fetch_data():
-    pass
-    # query = 'SELECT * FROM form'
-    # results = await database.fetch_all(query=query)
-    # return results
-
-    #########################################33
-
-    # query = """ DROP TABLE form_template;"""
-
-    # await database.execute(query=query)
-
-    # query = """CREATE TABLE form_template (
-    #                 form_uid INTEGER NOT NULL,
-    #                 author TEXT NOT NULL,
-    #                 time INTEGER NOT NULL,
-    #                 name TEXT NOT NULL,
-    #                 fields TEXT NOT NULL
-    #             );"""
-
-    # await database.execute(query=query)
-
-    # query = """ DROP TABLE form_record;"""
-
-    # await database.execute(query=query)
-
-    # query = """CREATE TABLE form_record (
-    #                 author TEXT NOT NULL,
-    #                 time INTEGER NOT NULL,
-    #                 fields TEXT NOT NULL,
-    #                 form_uid INTEGER NOT NULL, 
-    #                 record_id INTEGER PRIMARY KEY,
-    #                 FOREIGN KEY (form_uid) REFERENCES form_template(form_uid)
-    #             );"""
-
-    # await database.execute(query=query)
-
-    ###########################################################
-
-    # query = """ INSERT INTO form (b)
-    #             VALUES  ('str1'),
-    #                     ('str2');"""
-
-    # await database.execute(query=query)
-
-    # query = """ DROP TABLE form;"""
-
-    # await database.execute(query=query)
